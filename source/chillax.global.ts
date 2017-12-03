@@ -1,4 +1,4 @@
 
-import {alpha} from "./chillax"
+import Chillax from "./chillax"
 
-console.log("alpha", alpha)
+window["Chillax"] = Chillax
