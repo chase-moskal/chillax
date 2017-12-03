@@ -24,6 +24,9 @@ export interface ChillaxParams {
  * CHILLAX — vertical parallax engine
  *
  * - provide 'view' elements to apply parallax effects within
+ *   they should have the `[data-chillax]` attribute, which describes 'leeway',
+ *   the percentage of parallax sliding action allowable, relative to the
+ *   height of the view
  *
  * - parallax effect will be applied to child elements of the views which have
  *   the `[data-chillax-layer]` attribute
@@ -45,18 +48,28 @@ export default class Chillax {
 
 		/** Layers which are translated vertically to achieve parallax effect */
 		layers: HTMLElement[]
+
+		/** Percentage of view height reserved for parallax layer sliding action */
+		leeway: number
 	}[]
 
-	/** Function handler to apply parallax effects to all 'views' */
-	private readonly applyParallax = event => {
+	/** Function handler to apply parallax effects to all 'layers' relative to
+		their containing 'view' */
+	private readonly applyParallax = () => {
 		const scroll = getPageScroll()
 		const viewportHeight = getViewportHeight()
-		for (const {view, layers} of this.views) {
+
+		for (const {view, layers, leeway} of this.views) {
 			const progress = getScrollProgressThroughElement({scroll, viewportHeight, element: view})
 			const centeredProgress = (progress * 2) - 1
+			const viewHeight = view.offsetHeight
+
 			for (const layer of layers) {
-				const magnitude = parseFloat(layer.getAttribute("data-chillax-layer"))
-				const parallax = centeredProgress * magnitude * (view.offsetHeight / 10)
+				const depth = parseFloat(layer.getAttribute("data-chillax-layer"))
+				const leewayPixels = (leeway / 100) * viewHeight
+
+				// the money shot
+				const parallax = (centeredProgress * (leewayPixels / 2) * depth) / 10
 				layer.style.transform = `translate3d(0px, ${parallax}px, 0px)`
 			}
 		}
@@ -68,10 +81,12 @@ export default class Chillax {
 		if (!views) throw new Error("chillax requires an array of views")
 		this.views = makeArray(views).map(view => {
 			const layers = makeArray(view.querySelectorAll("[data-chillax-layer]"))
-			return {view, layers}
+			const leeway = parseFloat(view.getAttribute("data-chillax"))
+			return {view, layers, leeway}
 		})
 		window.addEventListener("scroll", this.applyParallax)
 		window.addEventListener("resize", this.applyParallax)
+		this.applyParallax()
 	}
 
 	/** Deactivate and shutdown this chillax instance and all associated

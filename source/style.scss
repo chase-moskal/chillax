@@ -1,7 +1,7 @@
 
 @charset "utf-8";
 
-.chillax-view {
+[data-chillax] {
 	margin: 16em auto;
 	width: 100%;
 	max-width: 1920px;
@@ -15,12 +15,12 @@
 	background: white;
 }
 
-.chillax-view [data-chillax-layer] {
+[data-chillax] [data-chillax-layer] {
 	display: block;
 	width: 100%;
 	position: absolute;
 
-	/* offset taller image so it's centered in the 16:9 view */
+	/* offset layers so they are centered in the 16:9 view */
 	top: -18.5185%;
 
 	left: 0;

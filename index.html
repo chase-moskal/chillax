@@ -24,10 +24,10 @@
 				</p>
 			</header>
 
-			<div class="chillax-view">
-				<img data-chillax-layer="6" src="images/spikeytest/spikeytest-2.png" alt=""/>
-				<img data-chillax-layer="4" src="images/spikeytest/spikeytest-3.png" alt=""/>
-				<img data-chillax-layer="2" src="images/spikeytest/spikeytest-4.png" alt=""/>
+			<div data-chillax="100">
+				<img data-chillax-layer="10" src="images/spikeytest/spikeytest-2.png" alt=""/>
+				<img data-chillax-layer="6.6" src="images/spikeytest/spikeytest-3.png" alt=""/>
+				<img data-chillax-layer="3.3" src="images/spikeytest/spikeytest-4.png" alt=""/>
 				<img data-chillax-layer="0" src="images/spikeytest/spikeytest-5.png" alt=""/>
 			</div>
 
@@ -36,7 +36,7 @@
 		</main>
 		<script src="dist/chillax.global.bundle.js"></script>
 		<script>
-			const views = document.querySelectorAll(".chillax-view")
+			const views = document.querySelectorAll("[data-chillax]")
 			const chillax = new Chillax({views})
 		</script>
 	</body>

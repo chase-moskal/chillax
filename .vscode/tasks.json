@@ -8,11 +8,11 @@
 		{
 			"taskName": "install (production build)",
 			"args": ["install", "--silent"],
-			"isBuildCommand": true,
 			"problemMatcher": ["$tsc"]
 		},
 		{
 			"taskName": "development build",
+			"isBuildCommand": true,
 			"args": ["run", "build-debug", "--silent"],
 			"problemMatcher": ["$tsc"]
 		}
