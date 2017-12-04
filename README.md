@@ -29,7 +29,9 @@
 
 ### chillax usage instructions
 
-1. set up a chillax view on your html page
+1. prepare your image layers, all with the dimensions `1920x2160`
+
+2. set up a chillax view on your html page
 
 	```html
 	<div data-chillax="100">
@@ -42,14 +44,14 @@
 	- `[data-chillax]` specifies the `leeway`,  
 		which is percentage of parallax sliding action allowable, relative to the height of the view
 
-	- `[data-chillax-layer]` specifies the depth,  
+	- `[data-chillax-layer]` specifies the `depth`,  
 		where `0` is flush with the rest of the page,  
 		`10` is sunken fully into the background,  
 		and anything negative is popping out of the view toward the user
 
 	- note that the chillax css styles define only views with an aspect ratio of `16:9` – if you want a different ratio, you must modify/overwrite these css styles
 
-2. activate chillax on your views
+3. activate chillax on your views
 
 	```html
 	<script>
