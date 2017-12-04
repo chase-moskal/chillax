@@ -7,7 +7,7 @@
 1. `npm install chillax`
 2. `import Chillax from "chillax"`  
 	*(it's a commonjs module)*
-3. link in the stylesheet, `node_modules/chillax/dist/style.css`
+3. link in the stylesheet, `node_modules/chillax/dist/chillax-styles.css`
 4. proceed to chillax usage instructions below
 
 ### install chillax the old fashioned way
@@ -15,12 +15,12 @@
 1. download the chillax "global bundle" script, and stylesheet *(right-click save-as)*
 
 	- [chillax.global.bundle.js](https://raw.githubusercontent.com/chase-moskal/chillax/gh-pages/dist/chillax.global.bundle.js)
-	- [style.css](https://raw.githubusercontent.com/chase-moskal/chillax/gh-pages/dist/style.css)
+	- [chillax-styles.css](https://raw.githubusercontent.com/chase-moskal/chillax/gh-pages/dist/chillax-styles.css)
 
 2. load the chillax script and stylesheet onto your html page
 
 	```html
-	<link rel="stylesheet" href="style.css"/>
+	<link rel="stylesheet" href="chillax-styles.css"/>
 
 	<script src="chillax.global.bundle.js"></script>
 	```
