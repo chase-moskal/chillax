@@ -1,10 +1,12 @@
 
 @charset "utf-8";
 
+$chillax-width: 1920px;
+
 [data-chillax] {
 	margin: 16em auto;
 	width: 100%;
-	max-width: 1920px;
+	max-width: $chillax-width;
 	position: relative;
 	overflow: hidden;
 	height: 0;

@@ -29,7 +29,12 @@
 
 ### chillax usage instructions
 
-1. prepare your image layers, all with the dimensions `1920x2160`
+1. prepare your png image layers, all with the dimensions `1920x2160`
+
+	- your image must be double-height, to give leeway to the parallax effects (otherwise your layers will look cut-off)
+	- you should probably use the `psd` template `parallax-template.zip` in the images folder
+	- the template shows that the viewport is still a `16:9` window, centered within the `16:18` image
+	- the template is at 4k resolution, but you should save-for-web at `1920x2160`
 
 2. set up a chillax view on your html page
 
