@@ -9,7 +9,7 @@ export function clamp(value, min, max) {
 	return Math.min(Math.max(value, min), max)
 }
 
-export function makeArray(arraylike: any[]) {
+export function makeArray(arraylike: any) {
 	return Array.prototype.slice.call(arraylike)
 }
 
