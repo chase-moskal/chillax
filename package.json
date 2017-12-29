@@ -6,6 +6,7 @@
 		"parallax"
 	],
 	"main": "dist/chillax",
+	"types": "dist/chillax.d.ts",
 	"author": "Chase Moskal <chasemoskal@gmail.com>",
 	"license": "ISC",
 	"scripts": {
