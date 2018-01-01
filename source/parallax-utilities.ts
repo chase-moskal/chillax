@@ -5,19 +5,19 @@ export function getPageScroll() {
 	return top
 }
 
-export function clamp(value, min, max) {
+export function clamp(value, min, max): number {
 	return Math.min(Math.max(value, min), max)
 }
 
-export function makeArray(arraylike: any) {
+export function makeArray<T = any>(arraylike: any): Array<T> {
 	return Array.prototype.slice.call(arraylike)
 }
 
-export function getViewportHeight() {
+export function getViewportHeight(): number {
 	return window.innerHeight
 }
 
-export function getTopOffsetRelativeToPage(element) {
+export function getTopOffsetRelativeToPage(element): number {
 		let top = 0
 		do {
 				top += element.offsetTop || 0;
@@ -26,12 +26,28 @@ export function getTopOffsetRelativeToPage(element) {
 		return top
 }
 
-export function getScrollProgressThroughElement({scroll, viewportHeight, element}) {
+export function calculateProgress({value, start, end}: {
+	value: number
+	start: number
+	end: number
+}): number {
+	const range = end - start
+	const journey = value - start
+	return journey / range
+}
+
+export function getScrollProgressThroughElement(params: {
+	scroll?: number
+	viewportHeight: number
+	element: HTMLElement
+}) {
+	const {viewportHeight, element, scroll = window.scrollY} = params
 	const top = getTopOffsetRelativeToPage(element)
 	const height = element.offsetHeight
-	const bottom = top + height
-	const progressTop = top - viewportHeight
-	const progressHeight = height + viewportHeight
-	const progress = (scroll - progressTop) / progressHeight
-	return clamp(progress, 0, 1)
+
+	return calculateProgress({
+		value: scroll,
+		start: top - viewportHeight,
+		end: height + viewportHeight
+	})
 }

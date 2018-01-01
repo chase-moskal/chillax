@@ -111,7 +111,8 @@ export default class Chillax {
 
 		for (const scene of this.scenes) {
 			const progress = getScrollProgressThroughElement({scroll, viewportHeight, element: scene.view})
-			this.applyParallaxToView(progress, scene)
+			const clampedprogress = clamp(progress, 0, 1)
+			this.applyParallaxToView(clampedprogress, scene)
 		}
 	}
 

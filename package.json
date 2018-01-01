@@ -1,6 +1,6 @@
 {
 	"name": "chillax",
-	"version": "0.0.0-dev.5",
+	"version": "0.0.0-dev.6",
 	"description": "vertical parallax for beautiful web presentations",
 	"keywords": [
 		"parallax"
@@ -19,7 +19,7 @@
 		"build-styles": "node-sass --source-map true source/chillax-styles.scss dist/chillax-styles.css",
 		"watch-styles": "npm run build-styles -s -- --watch",
 		"test": "jest --coverage --verbose",
-		"start": "http-server -p 8080"
+		"start": "http-server"
 	},
 	"devDependencies": {
 		"@types/jest": "21.1.6",
