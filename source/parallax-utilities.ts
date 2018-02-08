@@ -1,5 +1,5 @@
 
-export function getPageScroll() {
+export function getVerticalPageScroll() {
 	const doc = document.documentElement
 	const top = (window.pageYOffset || doc.scrollTop) - (doc.clientTop || 0)
 	return top
@@ -13,11 +13,7 @@ export function makeArray<T = any>(arraylike: any): Array<T> {
 	return Array.prototype.slice.call(arraylike)
 }
 
-export function getViewportHeight(): number {
-	return window.innerHeight
-}
-
-export function getTopOffsetRelativeToPage(element): number {
+export function getElementVerticalPagePosition(element): number {
 		let top = 0
 		do {
 				top += element.offsetTop || 0;
@@ -36,18 +32,17 @@ export function calculateProgress({value, start, end}: {
 	return journey / range
 }
 
-export function getScrollProgressThroughElement(params: {
-	scroll?: number
-	viewportHeight: number
-	element: HTMLElement
-}) {
-	const {viewportHeight, element, scroll = window.scrollY} = params
-	const top = getTopOffsetRelativeToPage(element)
-	const height = element.offsetHeight
+export function getScrollProgressOverElement(element: HTMLElement) {
+	const scroll = getVerticalPageScroll();
+	const viewportHeight = window.innerHeight;
 
-	return calculateProgress({
-		value: scroll,
-		start: top - viewportHeight,
-		end: height + viewportHeight
-	})
+	const viewportMidpoint = scroll + (viewportHeight / 2)
+	const top = getElementVerticalPagePosition(element)
+	const height = element.offsetHeight
+	const bottom = top + height
+
+	const value = viewportMidpoint
+	const start = top - (viewportHeight / 2)
+	const end = bottom + (viewportHeight / 2)
+	return calculateProgress({value, start, end})
 }

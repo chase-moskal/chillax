@@ -8,10 +8,9 @@ CHILLAX — vertical parallax engine
 import {
 	clamp,
 	makeArray,
-	getPageScroll,
-	getViewportHeight,
-	getTopOffsetRelativeToPage,
-	getScrollProgressThroughElement
+	getVerticalPageScroll,
+	getElementVerticalPagePosition,
+	getScrollProgressOverElement
 } from "./parallax-utilities"
 
 /**
@@ -106,11 +105,11 @@ export default class Chillax {
 	private readonly handleScrollParallax = () => {
 		if (this.mode !== "scroll") return
 
-		const scroll = getPageScroll()
-		const viewportHeight = getViewportHeight()
+		const scroll = getVerticalPageScroll()
+		const viewportHeight = window.innerHeight
 
 		for (const scene of this.scenes) {
-			const progress = getScrollProgressThroughElement({scroll, viewportHeight, element: scene.view})
+			const progress = getScrollProgressOverElement(scene.view)
 			const clampedprogress = clamp(progress, 0, 1)
 			this.applyParallaxToView(clampedprogress, scene)
 		}
